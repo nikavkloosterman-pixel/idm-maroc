@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>International Destination Management Maroc — Morocco DMC</title>
+<meta name="description" content="International Destination Management Maroc is a destination management company (DMC) that builds full itineraries across Morocco for travellers, businesses and newlyweds. Operating under NR1 Commercialisation SARL." />
+<link rel="icon" type="image/svg+xml" href="nr1-favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+<link rel="icon" href="favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="favicon-180.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=El+Messiri:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#15173A;
+    --ink-2:#1E2148;
+    --majorelle:#2C3CA0;
+    --majorelle-deep:#1A2270;
+    --majorelle-bright:#4659DD;
+    --brass:#C2913F;
+    --brass-bright:#E4BA73;
+    --bone:#F5F1E7;
+    --bone-soft:#FBF9F2;
+    --bone-line:#E5DDCB;
+    --white:#FFFFFF;
+
+    --font-display:'Fraunces', Georgia, serif;
+    --font-body:'Hanken Grotesk', system-ui, sans-serif;
+    --font-mono:'IBM Plex Mono', ui-monospace, monospace;
+
+    --wrap:1180px;
+    --pad-x:clamp(20px, 5vw, 64px);
+    --r:14px;
+  }
+
+  /* Arabic typography swap */
+  body.lang-ar{ --font-display:'El Messiri', serif; --font-body:'IBM Plex Sans Arabic', sans-serif; --font-mono:'IBM Plex Sans Arabic', monospace; }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    font-family:var(--font-body);
+    background:var(--bone);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.65;
+    overflow-x:hidden;
+  }
+  body.lang-ar{ line-height:1.85; }
+
+  .wrap{ max-width:var(--wrap); margin-inline:auto; padding-inline:var(--pad-x); }
+
+  h1,h2,h3{ font-family:var(--font-display); font-weight:500; margin:0; line-height:1.06; letter-spacing:-0.015em; }
+  body.lang-ar h1, body.lang-ar h2, body.lang-ar h3{ font-weight:600; letter-spacing:0; line-height:1.3; }
+  p{ margin:0; }
+  a{ color:inherit; text-decoration:none; }
+
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:.74rem;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--brass);
+    display:inline-flex;
+    align-items:center;
+    gap:.7em;
+    margin:0 0 1.1rem;
+  }
+  body.lang-ar .eyebrow{ letter-spacing:0; font-weight:500; }
+  .eyebrow::before{ content:""; width:26px; height:1px; background:var(--brass); opacity:.7; }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex; align-items:center; gap:.6em;
+    font-family:var(--font-body); font-weight:600; font-size:.98rem;
+    padding:.85em 1.5em; border-radius:999px; cursor:pointer;
+    border:1.5px solid transparent; transition:transform .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
+    white-space:nowrap;
+  }
+  .btn-brass{ background:var(--brass); color:var(--ink); }
+  .btn-brass:hover{ background:var(--brass-bright); transform:translateY(-2px); }
+  .btn-ink{ background:var(--ink); color:var(--bone); }
+  .btn-ink:hover{ background:var(--majorelle); transform:translateY(-2px); }
+  .btn-ghost{ background:transparent; border-color:rgba(245,241,231,.45); color:var(--bone); }
+  .btn-ghost:hover{ border-color:var(--brass-bright); color:var(--brass-bright); transform:translateY(-2px); }
+  .btn .arr{ transition:transform .25s ease; }
+  [dir="rtl"] .btn .arr{ transform:scaleX(-1); }
+  .btn:hover .arr{ transform:translateX(3px); }
+  [dir="rtl"] .btn:hover .arr{ transform:scaleX(-1) translateX(3px); }
+
+  :focus-visible{ outline:2px solid var(--brass-bright); outline-offset:3px; border-radius:4px; }
+
+  /* ---------- Nav ---------- */
+  .nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(26,34,112,.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(226,182,110,.18);
+    color:var(--bone);
+  }
+  .nav-inner{ display:flex; align-items:center; gap:1.4rem; padding-block:.95rem; }
+  .brand{ display:flex; align-items:baseline; gap:.55rem; line-height:1; }
+  .brand .mark{ font-family:var(--font-display); font-size:1.06rem; font-weight:500; letter-spacing:-.01em; }
+  .brand .mark .accent{ color:var(--brass-bright); }
+  .brand .tag{ font-family:var(--font-mono); font-size:.62rem; letter-spacing:.22em; padding:.25em .55em; border:1px solid rgba(226,182,110,.5); border-radius:5px; color:var(--brass-bright); }
+  body.lang-ar .brand .tag{ letter-spacing:0; }
+
+  .nav-spacer{ margin-inline-start:auto; }
+  .nav-links{ display:flex; align-items:center; gap:1.6rem; }
+  .nav-links a{ font-size:.92rem; opacity:.85; transition:opacity .2s, color .2s; }
+  .nav-links a:hover{ opacity:1; color:var(--brass-bright); }
+
+  .langs{ display:flex; align-items:center; border:1px solid rgba(226,182,110,.35); border-radius:999px; overflow:hidden; }
+  .langs button{
+    font-family:var(--font-mono); font-size:.74rem; letter-spacing:.06em;
+    background:transparent; color:var(--bone); border:0; padding:.5em .8em; cursor:pointer; transition:background .2s, color .2s;
+  }
+  body.lang-ar .langs button{ font-family:var(--font-body); letter-spacing:0; }
+  .langs button:hover{ color:var(--brass-bright); }
+  .langs button[aria-pressed="true"]{ background:var(--brass); color:var(--ink); }
+
+  .nav-toggle{ display:none; background:transparent; border:1px solid rgba(226,182,110,.4); color:var(--bone); border-radius:9px; padding:.5em .7em; cursor:pointer; font-family:var(--font-mono); font-size:.7rem; letter-spacing:.12em; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative; color:var(--bone); overflow:hidden;
+    background:
+      radial-gradient(120% 90% at 85% -10%, rgba(70,89,221,.55) 0%, rgba(70,89,221,0) 55%),
+      linear-gradient(160deg, var(--majorelle) 0%, var(--majorelle-deep) 70%, #141C5C 100%);
+  }
+  .hero-grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:2rem; align-items:center; padding-block:clamp(3.5rem, 8vw, 6.5rem) clamp(2rem,5vw,3rem); position:relative; z-index:2; }
+  .hero-eyebrow{ color:var(--brass-bright); }
+  .hero-eyebrow::before{ background:var(--brass-bright); }
+  .hero h1{ font-size:clamp(2.5rem, 5.6vw, 4.7rem); margin-bottom:1.4rem; }
+  .hero h1 em{ font-style:italic; color:var(--brass-bright); }
+  .hero .lead{ font-size:clamp(1.05rem,1.6vw,1.22rem); max-width:46ch; color:rgba(245,241,231,.82); margin-bottom:2rem; }
+  .hero-actions{ display:flex; flex-wrap:wrap; gap:.9rem; align-items:center; }
+  .hero-under{ margin-top:1.8rem; font-family:var(--font-mono); font-size:.76rem; letter-spacing:.12em; color:rgba(245,241,231,.6); display:flex; align-items:center; gap:.6rem; }
+  body.lang-ar .hero-under{ letter-spacing:0; }
+  .hero-under .dot{ width:5px; height:5px; border-radius:50%; background:var(--brass); }
+
+  /* ambient khatim motif */
+  .khatim-bg{ position:absolute; inset-block-start:-90px; inset-inline-end:-90px; width:420px; height:420px; opacity:.16; z-index:1; pointer-events:none; }
+  .khatim-bg svg{ width:100%; height:100%; }
+
+  /* hero side panel */
+  .hero-panel{ position:relative; z-index:2; }
+  .brandmark{ width:100%; max-width:330px; margin-inline:auto; display:block; filter:drop-shadow(0 18px 40px rgba(10,14,50,.45)); }
+
+  /* Route ribbon */
+  .route{ position:relative; z-index:2; padding-block:0 clamp(2.5rem,5vw,3.8rem); }
+  .route svg{ width:100%; height:auto; display:block; overflow:visible; }
+  .route .line{ fill:none; stroke:var(--brass-bright); stroke-width:1.6; stroke-dasharray:6 7; }
+  .route .node{ fill:var(--majorelle-deep); stroke:var(--brass-bright); stroke-width:1.6; }
+  .route .lbl{ font-family:var(--font-mono); font-size:12px; fill:var(--bone); letter-spacing:.04em; }
+  .route .num{ font-family:var(--font-mono); font-size:9.5px; fill:var(--brass-bright); }
+  body.lang-ar .route .lbl, body.lang-ar .route .num{ font-family:'IBM Plex Sans Arabic', sans-serif; }
+
+  /* ---------- Section shared ---------- */
+  .strip, .craft, .about{ padding-block:clamp(4rem,8vw,7rem); }
+  .why, .cta-band{ padding-block:clamp(4.5rem,8vw,7.5rem); }
+
+  .section-head{ max-width:60ch; margin-bottom:3rem; }
+  .section-head h2{ font-size:clamp(1.85rem,3.4vw,2.9rem); }
+  .section-head .sub{ margin-top:1.1rem; font-size:1.08rem; color:rgba(21,23,58,.72); max-width:54ch; }
+
+  /* DMC strip */
+  .strip{ background:var(--bone-soft); border-block:1px solid var(--bone-line); }
+  .strip-grid{ display:grid; grid-template-columns:.85fr 1.15fr; gap:clamp(2rem,5vw,4rem); align-items:start; }
+  .strip-grid .lead-body{ font-size:1.18rem; color:var(--ink); line-height:1.6; }
+  .strip-grid .lead-body strong{ color:var(--majorelle); font-weight:600; }
+
+  /* Craft cards */
+  .cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.4rem; }
+  .card{
+    background:var(--white); border:1px solid var(--bone-line); border-radius:var(--r);
+    padding:2rem 1.8rem; position:relative; overflow:hidden;
+    transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+  }
+  .card:hover{ transform:translateY(-5px); box-shadow:0 22px 45px -28px rgba(26,34,112,.6); border-color:rgba(44,60,160,.35); }
+  .card .kstar{ width:34px; height:34px; margin-bottom:1.3rem; color:var(--brass); }
+  .card h3{ font-size:1.45rem; margin-bottom:.7rem; color:var(--ink); }
+  .card p{ color:rgba(21,23,58,.72); font-size:1rem; }
+  .card .rule{ position:absolute; inset-block-start:0; inset-inline:0; height:3px; background:linear-gradient(90deg,var(--majorelle),var(--majorelle-bright)); }
+
+  /* Why band (deep blue) */
+  .why{ background:linear-gradient(165deg,var(--majorelle) 0%, var(--majorelle-deep) 100%); color:var(--bone); position:relative; overflow:hidden; }
+  .why .khatim-bg{ inset-block-start:auto; inset-block-end:-120px; inset-inline-start:-120px; inset-inline-end:auto; opacity:.12; }
+  .why .eyebrow{ color:var(--brass-bright); }
+  .why .eyebrow::before{ background:var(--brass-bright); }
+  .why h2{ color:var(--bone); }
+  .why-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:2.4rem 3rem; position:relative; z-index:2; }
+  .pillar{ display:grid; grid-template-columns:auto 1fr; gap:1.1rem; align-items:start; }
+  .pillar .ic{ width:30px; height:30px; color:var(--brass-bright); margin-top:.25rem; flex-shrink:0; }
+  .pillar h3{ font-size:1.25rem; color:var(--bone); margin-bottom:.5rem; }
+  .pillar p{ color:rgba(245,241,231,.78); font-size:1rem; }
+
+  /* About / background */
+  .about-grid{ display:grid; grid-template-columns:1.3fr .7fr; gap:clamp(2rem,5vw,4rem); align-items:start; }
+  .about-body p{ margin-bottom:1.2rem; font-size:1.08rem; color:rgba(21,23,58,.82); }
+  .about-body .mission{
+    margin-top:1.8rem; padding-inline-start:1.4rem; border-inline-start:3px solid var(--brass);
+    font-family:var(--font-display); font-style:italic; font-size:1.3rem; color:var(--majorelle); line-height:1.4;
+  }
+  body.lang-ar .about-body .mission{ font-style:normal; font-weight:500; }
+
+  .facts{ background:var(--white); border:1px solid var(--bone-line); border-radius:var(--r); padding:1.9rem; }
+  .facts .ft{ padding-block:1rem; border-bottom:1px solid var(--bone-line); }
+  .facts .ft:first-child{ padding-top:0; }
+  .facts .ft:last-child{ border-bottom:0; padding-bottom:0; }
+  .facts .ft dt{ font-family:var(--font-mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--brass); margin-bottom:.35rem; }
+  body.lang-ar .facts .ft dt{ letter-spacing:0; font-weight:500; }
+  .facts .ft dd{ margin:0; font-size:1.02rem; font-weight:600; color:var(--ink); }
+
+  /* CTA band */
+  .cta-band{ background:var(--ink); color:var(--bone); text-align:center; position:relative; overflow:hidden; }
+  .cta-band .khatim-bg{ inset:0; inset-inline-start:50%; transform:translateX(-50%); inset-block-start:-40px; width:520px; height:520px; opacity:.08; }
+  [dir="rtl"] .cta-band .khatim-bg{ transform:translateX(50%); }
+  .cta-inner{ position:relative; z-index:2; max-width:54ch; margin-inline:auto; }
+  .cta-inner h2{ font-size:clamp(2rem,4vw,3.2rem); margin-bottom:1.1rem; }
+  .cta-inner .sub{ color:rgba(245,241,231,.78); font-size:1.12rem; margin-bottom:2rem; }
+  .cta-contact{ margin-top:2.2rem; display:flex; gap:2rem; justify-content:center; flex-wrap:wrap; font-family:var(--font-mono); font-size:.84rem; letter-spacing:.06em; color:rgba(245,241,231,.7); }
+  body.lang-ar .cta-contact{ letter-spacing:0; }
+  .cta-contact a{ color:var(--brass-bright); }
+  .cta-contact span{ display:block; color:rgba(245,241,231,.5); font-size:.72rem; letter-spacing:.16em; margin-bottom:.3rem; text-transform:uppercase; }
+  body.lang-ar .cta-contact span{ letter-spacing:0; }
+
+  /* Footer */
+  .footer{ background:var(--majorelle-deep); color:rgba(245,241,231,.75); padding-block:2.6rem; border-top:1px solid rgba(226,182,110,.18); }
+  .footer-inner{ display:flex; flex-wrap:wrap; gap:1.4rem 2rem; align-items:center; justify-content:space-between; }
+  .footer .f-brand{ font-family:var(--font-display); color:var(--bone); font-size:1.05rem; }
+  .footer .f-brand .accent{ color:var(--brass-bright); }
+  .footer .f-meta{ font-family:var(--font-mono); font-size:.74rem; letter-spacing:.1em; }
+  body.lang-ar .footer .f-meta{ letter-spacing:0; }
+  .footer .f-tag{ font-size:.85rem; }
+  .f-legal{ margin-top:1.5rem; padding-top:1.4rem; border-top:1px solid rgba(226,182,110,.14); display:flex; flex-wrap:wrap; gap:.5rem 1.2rem; align-items:center; font-family:var(--font-mono); font-size:.72rem; letter-spacing:.08em; color:rgba(245,241,231,.62); }
+  .f-legal .num{ color:var(--brass-bright); }
+  .f-legal .sep{ opacity:.45; }
+  body.lang-ar .f-legal{ letter-spacing:0; }
+
+  /* Gallery */
+  .gallery{ padding-block:clamp(4rem,8vw,7rem); background:var(--bone-soft); border-bottom:1px solid var(--bone-line); }
+  .gallery-grid{ display:grid; grid-template-columns:1.25fr 1fr; grid-template-rows:repeat(2,1fr); gap:1.2rem; margin-top:2.6rem; }
+  .shot{ position:relative; overflow:hidden; border-radius:var(--r); border:1px solid var(--bone-line); background:var(--ink); min-height:200px; }
+  .shot.feature{ grid-row:span 2; }
+  .shot img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .9s cubic-bezier(.2,.7,.2,1); }
+  .shot:hover img{ transform:scale(1.05); }
+  .shot::after{ content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(20,28,92,.72) 0%, rgba(20,28,92,0) 45%); pointer-events:none; }
+  .shot figcaption{ position:absolute; inset-block-end:0; inset-inline:0; z-index:2; padding:1.2rem 1.3rem; color:var(--bone); }
+  .shot figcaption .city{ font-family:var(--font-display); font-size:1.35rem; line-height:1.1; display:block; }
+  .shot figcaption .place{ font-family:var(--font-mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--brass-bright); margin-top:.35rem; display:block; }
+  body.lang-ar .shot figcaption .place{ letter-spacing:0; }
+
+  /* Reveal animation */
+  .reveal{ opacity:0; transform:translateY(20px); transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in{ opacity:1; transform:none; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 940px){
+    .nav-links{ display:none; }
+    .nav-toggle{ display:inline-block; }
+    .nav.open .nav-links{
+      display:flex; flex-direction:column; align-items:flex-start; gap:1.1rem;
+      position:absolute; inset-inline:0; top:100%; background:var(--majorelle-deep);
+      padding:1.4rem var(--pad-x); border-bottom:1px solid rgba(226,182,110,.2);
+    }
+    .hero-grid{ grid-template-columns:1fr; gap:2.5rem; }
+    .hero-panel{ order:-1; }
+    .brandmark{ max-width:250px; }
+    .strip-grid, .about-grid, .why-grid{ grid-template-columns:1fr; }
+    .cards{ grid-template-columns:1fr; }
+    .gallery-grid{ grid-template-columns:1fr; grid-template-rows:none; }
+    .shot.feature{ grid-row:auto; }
+    .shot{ aspect-ratio:16/10; }
+  }
+  @media (max-width: 560px){
+    .brand .tag{ display:none; }
+    .hero-actions .btn{ flex:1 1 auto; justify-content:center; }
+    .route .lbl{ font-size:13px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+    .reveal{ opacity:1; transform:none; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body class="lang-en">
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="International Destination Management Maroc">
+        <span class="mark">International Destination Management <span class="accent">Maroc</span></span>
+        <span class="tag">DMC</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#agency" data-i18n="nav.agency">The agency</a>
+        <a href="#gallery" data-i18n="nav.gallery">Destinations</a>
+        <a href="#journeys" data-i18n="nav.journeys">Journeys</a>
+        <a href="#why" data-i18n="nav.why">Why us</a>
+        <a href="#about" data-i18n="nav.about">Background</a>
+        <a class="btn btn-brass" href="#partner" data-i18n="nav.cta">Become a partner</a>
+      </nav>
+
+      <div class="nav-spacer"></div>
+
+      <div class="langs" role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+        <button type="button" data-lang="ar" aria-pressed="false">الدارجة</button>
+      </div>
+
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" data-i18n="nav.menu">Menu</button>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="khatim-bg" aria-hidden="true">
+        <svg viewBox="-60 -60 120 120">
+          <rect x="-40" y="-40" width="80" height="80" fill="none" stroke="var(--brass-bright)" stroke-width="1"/>
+          <rect x="-40" y="-40" width="80" height="80" fill="none" stroke="var(--brass-bright)" stroke-width="1" transform="rotate(45)"/>
+          <circle cx="0" cy="0" r="40" fill="none" stroke="var(--brass-bright)" stroke-width="0.6"/>
+        </svg>
+      </div>
+
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow hero-eyebrow" data-i18n="hero.eyebrow">Destination management company · Morocco</p>
+          <h1><span data-i18n="hero.title_a">Morocco, planned </span><em data-i18n="hero.title_b">door to dune.</em></h1>
+          <p class="lead" data-i18n="hero.sub">International Destination Management Maroc builds complete, on-the-ground itineraries for travellers, businesses and newlyweds — and the local partnerships that make them run.</p>
+          <div class="hero-actions">
+            <a class="btn btn-brass" href="#partner"><span data-i18n="hero.cta1">Become a partner</span> <span class="arr">→</span></a>
+            <a class="btn btn-ghost" href="#journeys" data-i18n="hero.cta2">See what we craft</a>
+          </div>
+          <p class="hero-under"><span class="dot"></span><span data-i18n="hero.under">Operating under NR1 Commercialisation SARL</span></p>
+        </div>
+
+        <div class="hero-panel">
+          <svg class="brandmark" viewBox="0 0 360 360" role="img" aria-label="NR1 Commercialisation SARL">
+            <title>NR1 Commercialisation SARL</title>
+            <defs>
+              <radialGradient id="nr1Disc" cx="50%" cy="40%" r="64%">
+                <stop offset="0%" stop-color="#3B4AAB"/>
+                <stop offset="100%" stop-color="#131B58"/>
+              </radialGradient>
+              <path id="nr1Top" d="M 50 180 A 130 130 0 0 1 310 180" fill="none"/>
+            </defs>
+
+            <!-- disc + rings -->
+            <circle cx="180" cy="180" r="150" fill="url(#nr1Disc)" stroke="var(--brass-bright)" stroke-width="1.4"/>
+            <circle cx="180" cy="180" r="141" fill="none" stroke="var(--brass)" stroke-width="0.7" opacity="0.85"/>
+            <circle cx="180" cy="180" r="116" fill="none" stroke="var(--brass)" stroke-width="0.6" opacity="0.5"/>
+
+            <!-- curved entity name -->
+            <text font-family="'Hanken Grotesk', sans-serif" font-size="14.5" font-weight="600" letter-spacing="2.3" fill="var(--brass-bright)">
+              <textPath href="#nr1Top" startOffset="50%" text-anchor="middle">NR1 · COMMERCIALISATION · SARL</textPath>
+            </text>
+
+            <!-- side khatim diamonds bracketing the band -->
+            <g stroke="var(--brass-bright)" stroke-width="1.4" fill="none">
+              <rect x="-7" y="-7" width="14" height="14" transform="translate(57 180) rotate(45)"/>
+              <rect x="-7" y="-7" width="14" height="14" transform="translate(303 180) rotate(45)"/>
+            </g>
+
+            <!-- bottom locale -->
+            <text x="180" y="312" text-anchor="middle" font-family="'Hanken Grotesk', sans-serif" font-size="13" font-weight="600" letter-spacing="5" fill="var(--brass-bright)">MAROC</text>
+
+            <!-- center crest: khatim star finial -->
+            <g stroke="var(--brass-bright)" fill="none" stroke-width="1.6">
+              <rect x="-15" y="-15" width="30" height="30" transform="translate(180 108)"/>
+              <rect x="-15" y="-15" width="30" height="30" transform="translate(180 108) rotate(45)"/>
+            </g>
+            <circle cx="180" cy="108" r="3" fill="var(--brass-bright)" stroke="none"/>
+
+            <!-- monogram -->
+            <text x="180" y="216" text-anchor="middle" font-family="'Fraunces', Georgia, serif" font-size="104" font-weight="500" fill="var(--brass-bright)">NR1</text>
+
+            <line x1="150" y1="234" x2="210" y2="234" stroke="var(--brass)" stroke-width="1.2"/>
+            <text x="180" y="252" text-anchor="middle" font-family="'Hanken Grotesk', sans-serif" font-size="11" font-weight="600" letter-spacing="3.4" fill="var(--bone)">DESTINATION MANAGEMENT</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Itinerary route ribbon (signature element) -->
+      <div class="wrap route" aria-hidden="true">
+        <svg viewBox="0 0 1000 200" preserveAspectRatio="xMidYMid meet">
+          <path class="line" id="routeLine" d="M 90 120 C 160 70, 200 70, 250 80 S 360 150, 420 140 S 530 80, 580 90 S 700 160, 760 150 S 880 100, 930 100" />
+          <g class="route-nodes">
+            <g transform="translate(90,120)"><circle class="node" r="6"/><text class="num" x="0" y="-16" text-anchor="middle">01</text><text class="lbl rl" x="0" y="28" text-anchor="middle" data-i18n="route.n1">Tangier</text></g>
+            <g transform="translate(250,80)"><circle class="node" r="6"/><text class="num" x="0" y="-16" text-anchor="middle">02</text><text class="lbl rl" x="0" y="-30" text-anchor="middle" data-i18n="route.n2">Chefchaouen</text></g>
+            <g transform="translate(420,140)"><circle class="node" r="6"/><text class="num" x="0" y="-16" text-anchor="middle">03</text><text class="lbl rl" x="0" y="28" text-anchor="middle" data-i18n="route.n3">Fez</text></g>
+            <g transform="translate(580,90)"><circle class="node" r="6"/><text class="num" x="0" y="-16" text-anchor="middle">04</text><text class="lbl rl" x="0" y="-30" text-anchor="middle" data-i18n="route.n4">Casablanca</text></g>
+            <g transform="translate(760,150)"><circle class="node" r="6"/><text class="num" x="0" y="-16" text-anchor="middle">05</text><text class="lbl rl" x="0" y="28" text-anchor="middle" data-i18n="route.n5">Marrakech</text></g>
+            <g transform="translate(930,100)"><circle class="node" r="6"/><text class="num" x="0" y="-16" text-anchor="middle">06</text><text class="lbl rl" x="0" y="-30" text-anchor="middle" data-i18n="route.n6">Merzouga</text></g>
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ============ GALLERY ============ -->
+    <section class="gallery" id="gallery">
+      <div class="wrap">
+        <div class="section-head reveal" style="margin-bottom:0;">
+          <p class="eyebrow" data-i18n="gallery.eyebrow">Where the journeys happen</p>
+          <h2 data-i18n="gallery.heading">Morocco, in view.</h2>
+          <p class="sub" data-i18n="gallery.sub">A few of the places our itineraries are built around — from the souks and minarets of Marrakech to the Atlantic shoreline of Casablanca.</p>
+        </div>
+        <div class="gallery-grid reveal">
+          <figure class="shot feature">
+            <img src="https://images.unsplash.com/photo-1653323792487-6ecc6217040b?auto=format&fit=crop&w=1400&q=75" alt="A horse-drawn calèche in front of the Koutoubia Mosque minaret in Marrakech" loading="lazy" decoding="async" />
+            <figcaption>
+              <span class="city" data-i18n="gallery.c1city">Marrakech</span>
+              <span class="place" data-i18n="gallery.c1place">Koutoubia &amp; the medina</span>
+            </figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="https://images.unsplash.com/photo-1570135460237-510ca82c6781?auto=format&fit=crop&w=1100&q=72" alt="People walking through a market in the Marrakech souks" loading="lazy" decoding="async" />
+            <figcaption>
+              <span class="city" data-i18n="gallery.c2city">Marrakech</span>
+              <span class="place" data-i18n="gallery.c2place">The souks</span>
+            </figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="https://images.unsplash.com/photo-1706203644187-a719449587bb?auto=format&fit=crop&w=1100&q=72" alt="The Hassan II Mosque on the Atlantic shoreline in Casablanca" loading="lazy" decoding="async" />
+            <figcaption>
+              <span class="city" data-i18n="gallery.c3city">Casablanca</span>
+              <span class="place" data-i18n="gallery.c3place">Hassan II Mosque</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DMC STRIP ============ -->
+    <section class="strip" id="agency">
+      <div class="wrap strip-grid">
+        <div class="reveal">
+          <p class="eyebrow" data-i18n="dmc.eyebrow">What we do</p>
+          <h2 data-i18n="dmc.heading">A destination management company, rooted in Morocco.</h2>
+        </div>
+        <p class="lead-body reveal" data-i18n="dmc.body">A DMC is the local engine behind a great trip: the company on the ground that designs the route, secures the riads and venues, arranges transport and guides, and keeps every day running on time. That is our craft — and we do it across the whole country.</p>
+      </div>
+    </section>
+
+    <!-- ============ CRAFT / JOURNEYS ============ -->
+    <section class="craft" id="journeys">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow" data-i18n="craft.eyebrow">Itineraries</p>
+          <h2 data-i18n="craft.heading">Three kinds of journey, one standard of care.</h2>
+        </div>
+        <div class="cards">
+          <article class="card reveal">
+            <span class="rule"></span>
+            <svg class="kstar" viewBox="-50 -50 100 100"><rect x="-34" y="-34" width="68" height="68" fill="none" stroke="currentColor" stroke-width="3"/><rect x="-34" y="-34" width="68" height="68" fill="none" stroke="currentColor" stroke-width="3" transform="rotate(45)"/></svg>
+            <h3 data-i18n="craft.t1title">Travellers</h3>
+            <p data-i18n="craft.t1">Tailored leisure routes — imperial cities, Atlas valleys, coast and desert — paced and provisioned for the people taking them.</p>
+          </article>
+          <article class="card reveal">
+            <span class="rule"></span>
+            <svg class="kstar" viewBox="-50 -50 100 100"><rect x="-34" y="-34" width="68" height="68" fill="none" stroke="currentColor" stroke-width="3"/><rect x="-34" y="-34" width="68" height="68" fill="none" stroke="currentColor" stroke-width="3" transform="rotate(45)"/></svg>
+            <h3 data-i18n="craft.t2title">Businesses</h3>
+            <p data-i18n="craft.t2">Meetings, incentives and events with the logistics handled: venues, transfers, group catering and the kind of detail that reflects well on you.</p>
+          </article>
+          <article class="card reveal">
+            <span class="rule"></span>
+            <svg class="kstar" viewBox="-50 -50 100 100"><rect x="-34" y="-34" width="68" height="68" fill="none" stroke="currentColor" stroke-width="3"/><rect x="-34" y="-34" width="68" height="68" fill="none" stroke="currentColor" stroke-width="3" transform="rotate(45)"/></svg>
+            <h3 data-i18n="craft.t3title">Newlyweds</h3>
+            <p data-i18n="craft.t3">Honeymoons and destination celebrations across Morocco — private, considered, and built around the two people at the centre of them.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WHY PARTNER ============ -->
+    <section class="why" id="why">
+      <div class="khatim-bg" aria-hidden="true">
+        <svg viewBox="-60 -60 120 120">
+          <rect x="-40" y="-40" width="80" height="80" fill="none" stroke="var(--brass-bright)" stroke-width="1"/>
+          <rect x="-40" y="-40" width="80" height="80" fill="none" stroke="var(--brass-bright)" stroke-width="1" transform="rotate(45)"/>
+          <circle cx="0" cy="0" r="40" fill="none" stroke="var(--brass-bright)" stroke-width="0.6"/>
+        </svg>
+      </div>
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow" data-i18n="why.eyebrow">For local partners</p>
+          <h2 data-i18n="why.heading">Built to be a dependable partner.</h2>
+        </div>
+        <div class="why-grid">
+          <div class="pillar reveal">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            <div><h3 data-i18n="why.p1t">On-the-ground expertise</h3><p data-i18n="why.p1">We plan where we work. Our knowledge of Moroccan regions, seasons and suppliers is first-hand, not borrowed.</p></div>
+          </div>
+          <div class="pillar reveal">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+            <div><h3 data-i18n="why.p2t">One accountable contact</h3><p data-i18n="why.p2">Riads, transport firms, venues and guides deal with one organised partner who confirms, pays and follows through.</p></div>
+          </div>
+          <div class="pillar reveal">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>
+            <div><h3 data-i18n="why.p3t">Itineraries that fill your calendar</h3><p data-i18n="why.p3">Well-built routes send steady, qualified business to the partners on them, in and out of high season.</p></div>
+          </div>
+          <div class="pillar reveal">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 3v6c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+            <div><h3 data-i18n="why.p4t">Professional standards</h3><p data-i18n="why.p4">Clear agreements, reliable communication, and respect for your operation — under the registered entity NR1 Commercialisation SARL.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BACKGROUND / ABOUT ============ -->
+    <section class="about" id="about">
+      <div class="wrap about-grid">
+        <div class="about-body reveal">
+          <p class="eyebrow" data-i18n="about.eyebrow">Background</p>
+          <h2 data-i18n="about.heading" style="font-size:clamp(1.85rem,3.4vw,2.9rem); margin-bottom:1.6rem;">About the agency.</h2>
+          <p data-i18n="about.p1">International Destination Management Maroc is a destination management company dedicated to Morocco. We design and operate complete itineraries — from the first arrival transfer to the final departure — for individual travellers, corporate groups and couples.</p>
+          <p data-i18n="about.p2">The agency operates under NR1 Commercialisation SARL, its registered commercial entity. That structure lets us contract, invoice and partner with the clarity that hotels, venues, transport providers and tour operators expect.</p>
+          <p data-i18n="about.p3">Our focus is narrow on purpose: one country, covered properly. From Tangier and Chefchaouen in the north to Marrakech, the Atlas and the Saharan south, we plan around the realities of each region — distances, seasons, and the local partners who do the work well.</p>
+          <p class="mission" data-i18n="about.mission">Our aim is simple: itineraries that travellers remember, and partnerships that local businesses can count on.</p>
+        </div>
+        <aside class="facts reveal" aria-label="Agency facts">
+          <dl>
+            <div class="ft"><dt data-i18n="facts.f1label">Legal entity</dt><dd data-i18n="facts.f1val">NR1 Commercialisation SARL</dd></div>
+            <div class="ft"><dt data-i18n="facts.f2label">Discipline</dt><dd data-i18n="facts.f2val">Destination management (DMC)</dd></div>
+            <div class="ft"><dt data-i18n="facts.f3label">Destination</dt><dd data-i18n="facts.f3val">Morocco, nationwide</dd></div>
+            <div class="ft"><dt data-i18n="facts.f4label">We serve</dt><dd data-i18n="facts.f4val">Travellers · Businesses · Newlyweds</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============ PARTNER CTA ============ -->
+    <section class="cta-band" id="partner">
+      <div class="khatim-bg" aria-hidden="true">
+        <svg viewBox="-60 -60 120 120">
+          <rect x="-40" y="-40" width="80" height="80" fill="none" stroke="var(--brass-bright)" stroke-width="1"/>
+          <rect x="-40" y="-40" width="80" height="80" fill="none" stroke="var(--brass-bright)" stroke-width="1" transform="rotate(45)"/>
+        </svg>
+      </div>
+      <div class="wrap cta-inner reveal">
+        <p class="eyebrow" style="justify-content:center;" data-i18n="partner.eyebrow">Partnership</p>
+        <h2 data-i18n="partner.heading">Let’s build itineraries together.</h2>
+        <p class="sub" data-i18n="partner.text">If you run a riad, hotel, venue, transport company or guiding service in Morocco, we would like to talk. Tell us about your operation and where you work.</p>
+        <a class="btn btn-brass" href="mailto:marketingsolutionsmaroc@gmail.com"><span data-i18n="partner.cta">Start a partnership</span> <span class="arr">→</span></a>
+        <div class="cta-contact">
+          <div><span data-i18n="partner.emaillabel">Email</span><a href="mailto:marketingsolutionsmaroc@gmail.com">marketingsolutionsmaroc@gmail.com</a></div>
+          <div><span data-i18n="partner.phonelabel">Phone</span><a href="tel:+212784985173">+212 784-985173</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div class="f-brand">International Destination Management <span class="accent">Maroc</span></div>
+      <div class="f-tag" data-i18n="footer.tagline">A destination management company · Morocco</div>
+      <div class="f-meta" data-i18n="footer.rights">© 2026 NR1 Commercialisation SARL. All rights reserved.</div>
+    </div>
+    <div class="wrap f-legal">
+      <span><span data-i18n="footer.rc">Commercial Register (RC)</span> <span class="num" dir="ltr">180141</span></span>
+      <span class="sep">·</span>
+      <span>ICE <span class="num" dir="ltr">003932513000095</span></span>
+    </div>
+  </footer>
+
+<script>
+  const I18N = {
+    en: {
+      "doc.title":"International Destination Management Maroc — Morocco DMC",
+      "nav.agency":"The agency","nav.journeys":"Journeys","nav.why":"Why us","nav.about":"Background","nav.cta":"Become a partner","nav.menu":"Menu",
+      "hero.eyebrow":"Destination management company · Morocco",
+      "hero.title_a":"Morocco, planned ","hero.title_b":"door to dune.",
+      "hero.sub":"International Destination Management Maroc builds complete, on-the-ground itineraries for travellers, businesses and newlyweds — and the local partnerships that make them run.",
+      "hero.cta1":"Become a partner","hero.cta2":"See what we craft","hero.under":"Operating under NR1 Commercialisation SARL",
+      "route.n1":"Tangier","route.n2":"Chefchaouen","route.n3":"Fez","route.n4":"Casablanca","route.n5":"Marrakech","route.n6":"Merzouga",
+      "gallery.eyebrow":"Where the journeys happen","gallery.heading":"Morocco, in view.",
+      "gallery.sub":"A few of the places our itineraries are built around — from the souks and minarets of Marrakech to the Atlantic shoreline of Casablanca.",
+      "gallery.c1city":"Marrakech","gallery.c1place":"Koutoubia & the medina",
+      "gallery.c2city":"Marrakech","gallery.c2place":"The souks",
+      "gallery.c3city":"Casablanca","gallery.c3place":"Hassan II Mosque",
+      "nav.gallery":"Destinations",
+      "dmc.eyebrow":"What we do","dmc.heading":"A destination management company, rooted in Morocco.",
+      "dmc.body":"A DMC is the local engine behind a great trip: the company on the ground that designs the route, secures the riads and venues, arranges transport and guides, and keeps every day running on time. That is our craft — and we do it across the whole country.",
+      "craft.eyebrow":"Itineraries","craft.heading":"Three kinds of journey, one standard of care.",
+      "craft.t1title":"Travellers","craft.t1":"Tailored leisure routes — imperial cities, Atlas valleys, coast and desert — paced and provisioned for the people taking them.",
+      "craft.t2title":"Businesses","craft.t2":"Meetings, incentives and events with the logistics handled: venues, transfers, group catering and the kind of detail that reflects well on you.",
+      "craft.t3title":"Newlyweds","craft.t3":"Honeymoons and destination celebrations across Morocco — private, considered, and built around the two people at the centre of them.",
+      "why.eyebrow":"For local partners","why.heading":"Built to be a dependable partner.",
+      "why.p1t":"On-the-ground expertise","why.p1":"We plan where we work. Our knowledge of Moroccan regions, seasons and suppliers is first-hand, not borrowed.",
+      "why.p2t":"One accountable contact","why.p2":"Riads, transport firms, venues and guides deal with one organised partner who confirms, pays and follows through.",
+      "why.p3t":"Itineraries that fill your calendar","why.p3":"Well-built routes send steady, qualified business to the partners on them, in and out of high season.",
+      "why.p4t":"Professional standards","why.p4":"Clear agreements, reliable communication, and respect for your operation — under the registered entity NR1 Commercialisation SARL.",
+      "about.eyebrow":"Background","about.heading":"About the agency.",
+      "about.p1":"International Destination Management Maroc is a destination management company dedicated to Morocco. We design and operate complete itineraries — from the first arrival transfer to the final departure — for individual travellers, corporate groups and couples.",
+      "about.p2":"The agency operates under NR1 Commercialisation SARL, its registered commercial entity. That structure lets us contract, invoice and partner with the clarity that hotels, venues, transport providers and tour operators expect.",
+      "about.p3":"Our focus is narrow on purpose: one country, covered properly. From Tangier and Chefchaouen in the north to Marrakech, the Atlas and the Saharan south, we plan around the realities of each region — distances, seasons, and the local partners who do the work well.",
+      "about.mission":"Our aim is simple: itineraries that travellers remember, and partnerships that local businesses can count on.",
+      "facts.f1label":"Legal entity","facts.f1val":"NR1 Commercialisation SARL",
+      "facts.f2label":"Discipline","facts.f2val":"Destination management (DMC)",
+      "facts.f3label":"Destination","facts.f3val":"Morocco, nationwide",
+      "facts.f4label":"We serve","facts.f4val":"Travellers · Businesses · Newlyweds",
+      "partner.eyebrow":"Partnership","partner.heading":"Let’s build itineraries together.",
+      "partner.text":"If you run a riad, hotel, venue, transport company or guiding service in Morocco, we would like to talk. Tell us about your operation and where you work.",
+      "partner.cta":"Start a partnership","partner.emaillabel":"Email","partner.phonelabel":"Phone",
+      "footer.tagline":"A destination management company · Morocco","footer.rights":"© 2026 NR1 Commercialisation SARL. All rights reserved.","footer.rc":"Commercial Register (RC)"
+    },
+    fr: {
+      "doc.title":"International Destination Management Maroc — Agence réceptive au Maroc",
+      "nav.agency":"L’agence","nav.journeys":"Nos voyages","nav.why":"Pourquoi nous","nav.about":"À propos","nav.cta":"Devenir partenaire","nav.menu":"Menu",
+      "hero.eyebrow":"Agence réceptive (DMC) · Maroc",
+      "hero.title_a":"Le Maroc, pensé ","hero.title_b":"de la porte à la dune.",
+      "hero.sub":"International Destination Management Maroc conçoit des itinéraires complets et opérés sur le terrain pour les voyageurs, les entreprises et les jeunes mariés — ainsi que les partenariats locaux qui les font fonctionner.",
+      "hero.cta1":"Devenir partenaire","hero.cta2":"Voir nos voyages","hero.under":"Opérée sous NR1 Commercialisation SARL",
+      "route.n1":"Tanger","route.n2":"Chefchaouen","route.n3":"Fès","route.n4":"Casablanca","route.n5":"Marrakech","route.n6":"Merzouga",
+      "gallery.eyebrow":"Là où se déroulent les voyages","gallery.heading":"Le Maroc, en images.",
+      "gallery.sub":"Quelques-uns des lieux autour desquels nous construisons nos itinéraires — des souks et minarets de Marrakech au littoral atlantique de Casablanca.",
+      "gallery.c1city":"Marrakech","gallery.c1place":"La Koutoubia & la médina",
+      "gallery.c2city":"Marrakech","gallery.c2place":"Les souks",
+      "gallery.c3city":"Casablanca","gallery.c3place":"Mosquée Hassan II",
+      "nav.gallery":"Destinations",
+      "dmc.eyebrow":"Notre métier","dmc.heading":"Une agence réceptive, ancrée au Maroc.",
+      "dmc.body":"Une DMC est le moteur local d’un beau voyage : l’agence présente sur le terrain qui conçoit l’itinéraire, réserve les riads et les lieux, organise le transport et les guides, et veille à ce que chaque journée se déroule à l’heure. C’est notre métier — partout dans le pays.",
+      "craft.eyebrow":"Itinéraires","craft.heading":"Trois types de voyage, une même exigence.",
+      "craft.t1title":"Voyageurs","craft.t1":"Des itinéraires de loisirs sur mesure — villes impériales, vallées de l’Atlas, côte et désert — rythmés et organisés pour ceux qui les vivent.",
+      "craft.t2title":"Entreprises","craft.t2":"Réunions, séminaires et événements, logistique prise en charge : lieux, transferts, restauration de groupe et le souci du détail qui vous valorise.",
+      "craft.t3title":"Jeunes mariés","craft.t3":"Lunes de miel et célébrations à travers le Maroc — privées, soignées, et pensées autour des deux personnes qui en sont le cœur.",
+      "why.eyebrow":"Pour les partenaires locaux","why.heading":"Conçus pour être un partenaire fiable.",
+      "why.p1t":"Expertise de terrain","why.p1":"Nous planifions là où nous travaillons. Notre connaissance des régions, des saisons et des prestataires marocains est directe, pas empruntée.",
+      "why.p2t":"Un interlocuteur responsable","why.p2":"Riads, transporteurs, lieux et guides traitent avec un partenaire organisé qui confirme, règle et assure le suivi.",
+      "why.p3t":"Des itinéraires qui remplissent votre agenda","why.p3":"Des circuits bien conçus apportent une activité régulière et qualifiée aux partenaires concernés, en haute comme en basse saison.",
+      "why.p4t":"Des standards professionnels","why.p4":"Des accords clairs, une communication fiable et le respect de votre activité — sous l’entité enregistrée NR1 Commercialisation SARL.",
+      "about.eyebrow":"À propos","about.heading":"L’agence en bref.",
+      "about.p1":"International Destination Management Maroc est une agence réceptive dédiée au Maroc. Nous concevons et opérons des itinéraires complets — du premier transfert à l’arrivée jusqu’au départ — pour les voyageurs individuels, les groupes d’entreprise et les couples.",
+      "about.p2":"L’agence opère sous NR1 Commercialisation SARL, son entité commerciale enregistrée. Cette structure nous permet de contracter, de facturer et de nouer des partenariats avec la clarté qu’attendent les hôtels, les lieux, les transporteurs et les tour-opérateurs.",
+      "about.p3":"Notre champ est volontairement resserré : un seul pays, couvert comme il se doit. De Tanger et Chefchaouen au nord jusqu’à Marrakech, l’Atlas et le sud saharien, nous planifions selon les réalités de chaque région — les distances, les saisons et les partenaires locaux qui font bien le travail.",
+      "about.mission":"Notre objectif est simple : des itinéraires dont les voyageurs se souviennent, et des partenariats sur lesquels les entreprises locales peuvent compter.",
+      "facts.f1label":"Entité légale","facts.f1val":"NR1 Commercialisation SARL",
+      "facts.f2label":"Métier","facts.f2val":"Gestion de destination (DMC)",
+      "facts.f3label":"Destination","facts.f3val":"Maroc, tout le pays",
+      "facts.f4label":"Nous servons","facts.f4val":"Voyageurs · Entreprises · Jeunes mariés",
+      "partner.eyebrow":"Partenariat","partner.heading":"Construisons des itinéraires ensemble.",
+      "partner.text":"Si vous gérez un riad, un hôtel, un lieu d’événement, une entreprise de transport ou un service de guides au Maroc, parlons-en. Présentez-nous votre activité et votre région.",
+      "partner.cta":"Démarrer un partenariat","partner.emaillabel":"E-mail","partner.phonelabel":"Téléphone",
+      "footer.tagline":"Une agence réceptive · Maroc","footer.rights":"© 2026 NR1 Commercialisation SARL. Tous droits réservés.","footer.rc":"Registre de Commerce (RC)"
+    },
+    ar: {
+      "doc.title":"International Destination Management Maroc — وكالة استقبال بالمغرب",
+      "nav.agency":"الوكالة","nav.journeys":"الرحلات","nav.why":"علاش حنا","nav.about":"على الوكالة","nav.cta":"ولّي شريك","nav.menu":"القائمة",
+      "hero.eyebrow":"وكالة استقبال (DMC) · المغرب",
+      "hero.title_a":"المغرب، مخطّط ","hero.title_b":"من الباب حتّى للكثبان.",
+      "hero.sub":"International Destination Management Maroc كتصاوب رحلات كاملة ومدبّرة فالميدان للمسافرين، الشركات، والعرسان — وكتبني الشراكات المحلية اللي كتخلّي كلشي يمشي مزيان.",
+      "hero.cta1":"ولّي شريك معانا","hero.cta2":"شوف أش كنصاوبو","hero.under":"خدّامة تحت NR1 Commercialisation SARL",
+      "route.n1":"طنجة","route.n2":"شفشاون","route.n3":"فاس","route.n4":"الدار البيضاء","route.n5":"مراكش","route.n6":"مرزوكة",
+      "gallery.eyebrow":"فين كيوقعو الرحلات","gallery.heading":"المغرب، بالصورة.",
+      "gallery.sub":"شي بلايص من اللي كنبنيو حواليها الرحلات ديالنا — من الأسواق والصوامع ديال مراكش حتّى للساحل الأطلسي ديال الدار البيضاء.",
+      "gallery.c1city":"مراكش","gallery.c1place":"الكتبية والمدينة القديمة",
+      "gallery.c2city":"مراكش","gallery.c2place":"الأسواق",
+      "gallery.c3city":"الدار البيضاء","gallery.c3place":"مسجد الحسن الثاني",
+      "nav.gallery":"الوجهات",
+      "dmc.eyebrow":"أش كنديرو","dmc.heading":"وكالة استقبال، مغروسة فالمغرب.",
+      "dmc.body":"الـDMC هي الماكينة المحلية ديال أي رحلة ناجحة: الوكالة اللي كاينة فالميدان، كتصمّم الطريق، كتحجز الرياضات والقاعات، كتدبّر النقل والمرشدين، وكتسهر باش كل نهار يمشي فوقتو. هادي هي الصنعة ديالنا — وكنديروها فالمغرب كامل.",
+      "craft.eyebrow":"الرحلات","craft.heading":"ثلاثة أنواع ديال الرحلات، ونفس العناية.",
+      "craft.t1title":"المسافرين","craft.t1":"رحلات سياحية على المقاس — المدن العتيقة، وديان الأطلس، الساحل والصحرا — مدبّرة ومرتّبة على حساب اللي غادي يعيشوها.",
+      "craft.t2title":"الشركات","craft.t2":"اجتماعات، تحفيزات وأحداث، واللوجيستيك كامل علينا: القاعات، النقل، الماكلة ديال المجموعات، والتفاصيل اللي كتعطيكم صورة مزيانة.",
+      "craft.t3title":"العرسان","craft.t3":"شهر العسل والحفلات فالمغرب — خاصة، مدروسة، ومبنية حوالين العروسين اللي هوما القلب ديالها.",
+      "why.eyebrow":"للشركاء المحليين","why.heading":"مصمّمين باش نكونو شريك يتّكل عليه.",
+      "why.p1t":"خبرة فالميدان","why.p1":"كنخطّطو فبلاصة ما كنخدمو فيها. المعرفة ديالنا بالجهات، الفصول والموردين المغاربة مباشرة، ماشي مسلّفة.",
+      "why.p2t":"نقطة اتّصال وحدة ومسؤولة","why.p2":"الرياضات، شركات النقل، القاعات والمرشدين كيتعاملو مع شريك منظّم، كيأكّد، كيخلّص، وكيتبّع حتّى للآخر.",
+      "why.p3t":"رحلات كتعمّر الأجندة ديالك","why.p3":"الطرق المصمّمة مزيان كتجيب خدمة ثابتة ومضمونة للشركاء اللي فيها، فالموسم وخارجو.",
+      "why.p4t":"معايير احترافية","why.p4":"اتفاقيات واضحة، تواصل يتّكل عليه، واحترام للخدمة ديالك — تحت الكيان المسجّل NR1 Commercialisation SARL.",
+      "about.eyebrow":"على الوكالة","about.heading":"الوكالة باختصار.",
+      "about.p1":"International Destination Management Maroc هي وكالة استقبال مخصّصة للمغرب. كنصمّمو وكنشغّلو رحلات كاملة — من أوّل استقبال فالمطار حتّى للمشي — للمسافرين الأفراد، مجموعات الشركات، والأزواج.",
+      "about.p2":"الوكالة كتخدم تحت NR1 Commercialisation SARL، الكيان التجاري المسجّل ديالها. هاد الهيكلة كتخلّينا نتعاقدو، نفوترو، ونعقدو شراكات بالوضوح اللي كيتسناوه الأوطيلات، القاعات، شركات النقل ومنظّمي الرحلات.",
+      "about.p3":"المجال ديالنا مضيّق بقصد: بلاد وحدة، مغطّاة كيف خاص. من طنجة وشفشاون فالشمال حتّى لمراكش، الأطلس والجنوب الصحراوي، كنخطّطو على حساب واقع كل جهة — المسافات، الفصول، والشركاء المحليين اللي كيديرو الخدمة مزيان.",
+      "about.mission":"الهدف ديالنا بسيط: رحلات المسافرين كيتفكّروها، وشراكات الشركات المحلية كتقدر تتّكل عليها.",
+      "facts.f1label":"الكيان القانوني","facts.f1val":"NR1 Commercialisation SARL",
+      "facts.f2label":"التخصّص","facts.f2val":"تدبير الوجهة (DMC)",
+      "facts.f3label":"الوجهة","facts.f3val":"المغرب، البلاد كاملة",
+      "facts.f4label":"كنخدمو","facts.f4val":"المسافرين · الشركات · العرسان",
+      "partner.eyebrow":"شراكة","partner.heading":"خلّينا نبنيو الرحلات بجوج.",
+      "partner.text":"إلا عندك رياض، أوطيل، قاعة، شركة ديال النقل، ولا خدمة ديال المرشدين فالمغرب، بغينا نهضرو معاك. عرّفنا على الخدمة ديالك وفين كتخدم.",
+      "partner.cta":"بدا شراكة","partner.emaillabel":"الإيميل","partner.phonelabel":"التيليفون",
+      "footer.tagline":"وكالة استقبال · المغرب","footer.rights":"© 2026 NR1 Commercialisation SARL. جميع الحقوق محفوظة.","footer.rc":"السجل التجاري (RC)"
+    }
+  };
+
+  function applyLang(lang){
+    const dict = I18N[lang];
+    if(!dict) return;
+    document.querySelectorAll("[data-i18n]").forEach(function(el){
+      const key = el.getAttribute("data-i18n");
+      if(dict[key] !== undefined) el.textContent = dict[key];
+    });
+    document.title = dict["doc.title"];
+    document.documentElement.lang = lang;
+    document.documentElement.dir = (lang === "ar") ? "rtl" : "ltr";
+    document.body.classList.remove("lang-en","lang-fr","lang-ar");
+    document.body.classList.add("lang-" + lang);
+    document.querySelectorAll(".langs button").forEach(function(b){
+      b.setAttribute("aria-pressed", b.getAttribute("data-lang") === lang ? "true" : "false");
+    });
+  }
+
+  document.querySelectorAll(".langs button").forEach(function(b){
+    b.addEventListener("click", function(){ applyLang(b.getAttribute("data-lang")); });
+  });
+
+  // Mobile nav toggle
+  const nav = document.getElementById("nav");
+  const toggle = document.getElementById("navToggle");
+  toggle.addEventListener("click", function(){
+    const open = nav.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  nav.querySelectorAll(".nav-links a").forEach(function(a){
+    a.addEventListener("click", function(){ nav.classList.remove("open"); toggle.setAttribute("aria-expanded","false"); });
+  });
+
+  // Scroll reveal
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(!reduce){
+    const io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold:0.14 });
+    document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+
+    // Animate route line drawing
+    const line = document.getElementById("routeLine");
+    if(line){
+      const len = line.getTotalLength();
+      line.style.strokeDasharray = len;
+      line.style.strokeDashoffset = len;
+      line.style.transition = "stroke-dashoffset 2.4s cubic-bezier(.4,0,.2,1)";
+      requestAnimationFrame(function(){
+        setTimeout(function(){ line.style.strokeDashoffset = "0";
+          setTimeout(function(){ line.style.strokeDasharray = "6 7"; line.style.strokeDashoffset = "0"; }, 2450);
+        }, 350);
+      });
+    }
+  } else {
+    document.querySelectorAll(".reveal").forEach(function(el){ el.classList.add("in"); });
+  }
+</script>
+</body>
+</html>
